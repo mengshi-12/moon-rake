@@ -1,0 +1,142 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "mengshi-12/moon-rake"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn default_options() -> Options
+
+pub fn evaluate(Problem, Array[Double], tolerance? : Double) -> Result[Diagnostics, RakeError]
+
+pub fn fit(Problem, options? : Options) -> Result[Fit, RakeError]
+
+pub fn oneway_baseline(Problem) -> Result[Fit, RakeError]
+
+pub fn weighted_mean(Array[Double], Array[Double]) -> Result[Double, RakeError]
+
+// Errors
+
+// Types and methods
+pub(all) struct Diagnostics {
+  residuals : Array[Residual]
+  maximum_error : Double
+  bounds_violations : Int
+  total_weight : Double
+  effective_sample_size : Double
+  passes : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Diagnostics::equal(Self, Self) -> Bool
+pub fn Diagnostics::not_equal(Self, Self) -> Bool
+pub fn Diagnostics::to_json(Self) -> Json
+pub fn Diagnostics::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Fit {
+  status : Status
+  iterations : Int
+  weights : Array[WeightedRow]
+  trace : Array[Double]
+  diagnostics : Diagnostics
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Fit::equal(Self, Self) -> Bool
+pub fn Fit::not_equal(Self, Self) -> Bool
+pub fn Fit::to_json(Self) -> Json
+pub fn Fit::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Margin {
+  name : String
+  targets : Array[Target]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Margin::equal(Self, Self) -> Bool
+pub fn Margin::not_equal(Self, Self) -> Bool
+pub fn Margin::to_json(Self) -> Json
+pub fn Margin::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Options {
+  max_iterations : Int
+  tolerance : Double
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Options::equal(Self, Self) -> Bool
+pub fn Options::not_equal(Self, Self) -> Bool
+pub fn Options::to_json(Self) -> Json
+pub fn Options::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Problem {
+  rows : Array[Row]
+  margins : Array[Margin]
+} derive(@debug.Debug)
+pub fn Problem::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RakeError {
+  SizeLimit
+  InvalidOptions
+  InvalidRow(String)
+  DuplicateRow(String)
+  InvalidMargin(String)
+  UnknownCategory(String, String)
+  InconsistentTotals
+  InfeasibleMargin(String, String)
+  InvalidWeights
+  NotOneWay
+  NumericFailure
+} derive(Eq, @debug.Debug)
+pub fn RakeError::equal(Self, Self) -> Bool
+pub fn RakeError::not_equal(Self, Self) -> Bool
+pub fn RakeError::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Residual {
+  margin : String
+  category : String
+  target : Double
+  actual : Double
+  scaled_error : Double
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Residual::equal(Self, Self) -> Bool
+pub fn Residual::not_equal(Self, Self) -> Bool
+pub fn Residual::to_json(Self) -> Json
+pub fn Residual::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Row {
+  id : String
+  cells : Array[String]
+  base_weight : Double
+  lower : Double
+  upper : Double
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Row::equal(Self, Self) -> Bool
+pub fn Row::not_equal(Self, Self) -> Bool
+pub fn Row::to_json(Self) -> Json
+pub fn Row::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Status {
+  Converged
+  IterationLimit
+  BaselineRejected
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Status::equal(Self, Self) -> Bool
+pub fn Status::not_equal(Self, Self) -> Bool
+pub fn Status::to_json(Self) -> Json
+pub fn Status::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Target {
+  category : String
+  total : Double
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Target::equal(Self, Self) -> Bool
+pub fn Target::not_equal(Self, Self) -> Bool
+pub fn Target::to_json(Self) -> Json
+pub fn Target::to_repr(Self) -> @debug.Repr
+
+pub(all) struct WeightedRow {
+  id : String
+  weight : Double
+} derive(Eq, ToJson, @debug.Debug)
+pub fn WeightedRow::equal(Self, Self) -> Bool
+pub fn WeightedRow::not_equal(Self, Self) -> Bool
+pub fn WeightedRow::to_json(Self) -> Json
+pub fn WeightedRow::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits
