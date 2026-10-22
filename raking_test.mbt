@@ -374,6 +374,55 @@ test "size limits duplicate margin names and empty identifiers are rejected" {
 }
 
 ///|
+test "recalibrating a converged solution starts and ends at zero iterations" {
+  let p = problem()
+  let first = @moon-rake.fit(p).unwrap()
+  assert_eq(first.status, @moon-rake.Converged)
+  let seeded : @moon-rake.Problem = {
+    ..p,
+    rows: p.rows.mapi(fn(i, r) {
+      let w = first.weights[i].weight
+      { ..r, base_weight: w, lower: w * 0.5, upper: w * 2.0, }
+    }),
+  }
+  let second = @moon-rake.fit(seeded).unwrap()
+  assert_eq(second.iterations, 0)
+  assert_eq(second.trace, [])
+  assert_eq(second.weights, first.weights)
+  assert_true(second.diagnostics.passes)
+}
+
+///|
+test "tolerance is the acceptance boundary and every weight stays inside its bounds" {
+  let p : @moon-rake.Problem = {
+    rows: [row("a", ["A"], base=1000.0, lower=1.0, upper=2000.0)],
+    margins: [margin("m", [("A", 1000.0)])],
+  }
+  // 0.5 / 1000 = 5e-4 relative error: inside a 1e-3 tolerance, outside 1e-4.
+  assert_true(
+    @moon-rake.evaluate(p, [1000.5], tolerance=1.0e-3).unwrap().passes,
+  )
+  assert_false(
+    @moon-rake.evaluate(p, [1000.5], tolerance=1.0e-4).unwrap().passes,
+  )
+  let fitted = @moon-rake.fit(p).unwrap()
+  for i, w in fitted.weights {
+    assert_true(w.weight >= p.rows[i].lower)
+    assert_true(w.weight <= p.rows[i].upper)
+  }
+}
+
+///|
+test "zero weights leave the weighted mean and the total weight alone" {
+  near(@moon-rake.weighted_mean([10.0, 30.0], [0.0, 2.0]).unwrap(), 30.0)
+  let p = problem()
+  let fitted = @moon-rake.fit(p).unwrap()
+  near(fitted.diagnostics.total_weight, 100.0)
+  assert_true(fitted.diagnostics.effective_sample_size > 3.0)
+  assert_true(fitted.diagnostics.effective_sample_size < 4.0)
+}
+
+///|
 test "fit JSON carries status simultaneous residuals and escaped row IDs" {
   let p : @moon-rake.Problem = {
     rows: [row("a\"\\\n", ["A"])],
