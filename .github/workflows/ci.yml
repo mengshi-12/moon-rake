@@ -32,10 +32,11 @@ jobs:
       - name: Public interface is current
         run: |
           moon info
-          sed -i 's/\bInt32\b/Int/g' pkg.generated.mbti examples/demo/pkg.generated.mbti
-          git diff --exit-code -- pkg.generated.mbti examples/demo/pkg.generated.mbti
+          sed -i 's/\bInt32\b/Int/g' pkg.generated.mbti examples/demo/pkg.generated.mbti examples/audit/pkg.generated.mbti
+          git diff --exit-code -- pkg.generated.mbti examples/demo/pkg.generated.mbti examples/audit/pkg.generated.mbti
       - name: Exercise public API
         run: |
           for target in wasm wasm-gc js native; do
             moon run examples/demo --target "$target"
+            moon run examples/audit --target "$target"
           done

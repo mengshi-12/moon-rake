@@ -1,0 +1,14 @@
+audit of imported weights (row order as pasted)
+  region/north: target=50 actual=50 error=0
+  region/south: target=50 actual=47 error=0.06
+  band/high: target=40 actual=37 error=0.075
+  band/low: target=30 actual=30 error=0
+  band/mid: target=30 actual=30 error=0
+passes=false max_error=0.075 bounds_violations=0 ess=5.921334172435493
+after refit: iterations=1 passes=true max_error=0
+  north-high: 20
+  north-low: 15
+  north-mid: 15
+  south-high: 20
+  south-low: 15
+  south-mid: 15
