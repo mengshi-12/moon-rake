@@ -14,7 +14,7 @@
 
 ## 运行
 
-编译工具链 `moonc >= 0.10.14`（本仓库在 `moon 0.1.20260920` / `moonc v0.10.14+7d59c7e` 上验证）。首次解析已声明的 Apache-2.0 依赖需要联网，缓存后计算过程不联网。JS 目标需要 Node.js；Native 目标需要可用的 C 工具链。
+编译工具链 `moonc >= 0.10.14`。本地验证用 `moon 0.1.20260920` / `moonc v0.10.14+7d59c7e`（wasm、wasm-gc、js 三目标），CI 用安装脚本取到的当时最新稳定版 `moonc v0.10.17`（四目标全部通过，含 native）。首次解析已声明的 Apache-2.0 依赖需要联网，缓存后计算过程不联网。JS 目标需要 Node.js；Native 目标需要可用的 C 工具链。
 
 本模块尚未发布到 Mooncakes，因此 `moon add mengshi-12/moon-rake` 暂不可用；从源码工作：
 
@@ -29,6 +29,8 @@ moon info
 ```
 
 `moon run examples/demo` 是唯一示例入口，可换 `--target wasm-gc` 或 `js`；三个目标的 stdout 逐字一致，真实输出保存在 [docs/demo-output.txt](docs/demo-output.txt)。若 `moon` 不在 PATH，把工具链的 `bin` 目录加入当前进程 PATH 并设置 `MOON_HOME` 指向工具链根目录。
+
+`moon fmt --check` 在 0.10.14 上通过。0.10.17 的格式化器把同一类型的规范拼写改为 `Int32`、可选参数改为 `options~`，直接跑 `moon fmt` 会改写源码但仍可编译；本仓库保留 0.10.14 也接受的 `Int`／`options?` 拼写，因此 CI 不把格式化差异当门禁，只把 check、build、test、接口漂移和示例作为门禁。
 
 ## API
 
@@ -76,7 +78,7 @@ assert_true(audit.passes)
 
 19 项具名测试覆盖手算双边际解、非均匀 2×2 表的独立 odds-ratio 解、176 组二元边界解析解、真实上游互操作、联合不相容约束耗尽预算、结构零、外部权重顺序、输入不可变性、NaN/Infinity、极小权重尺度、尺寸上限与全部显式错误分支。
 
-CI 配置覆盖四目标的 check、build、test、格式检查、生成接口无漂移和四个目标的示例运行（`.github/workflows/ci.yml`）。配置存在不等于线上运行通过；最新一次 GitHub Actions 结果以仓库 Actions 页面为准。
+CI 配置覆盖四目标的 check、build、test、生成接口无漂移（比较前把 0.10.17 的 `Int32` 归一为 `Int`）和四个目标的示例运行（`.github/workflows/ci.yml`）。配置存在不等于线上运行通过；最新一次 GitHub Actions 结果以仓库 Actions 页面为准。
 
 尚未发布到 Mooncakes，也未报名任何赛事。`申报书.md` 与 `LOCAL_VALIDATION.md` 属于本地材料，被 `.gitignore` 排除，不在仓库内容中。
 
