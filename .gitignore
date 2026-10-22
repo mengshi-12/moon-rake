@@ -1,0 +1,13 @@
+# Build output and dependency cache: reproducible from moon.mod, never sources.
+/_build/
+/.moon/
+/.mooncakes/
+
+# 申报书.md is a contest submission document, not package content. It carries
+# the entrant's own details and is submitted through the official channel, so it
+# stays in the working directory and is never committed or published.
+/申报书.md
+
+# LOCAL_VALIDATION.md is a machine-specific log (absolute paths, local compiler
+# versions). The reproducible facts belong in README.md and CI; the log stays local.
+/LOCAL_VALIDATION.md

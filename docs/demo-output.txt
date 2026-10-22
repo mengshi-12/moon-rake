@@ -1,0 +1,16 @@
+﻿1 survey calibration: expected weights 30,30,20,20
+  a: 30
+  b: 30
+  c: 20
+  d: 20
+weighted mean of 10,20,30,40 = 23
+2 aggregate cell balancing: expected 8,12,20,12,18,30
+{"status":"Converged","iterations":1,"weights":[{"id":"11","weight":7.999999999999997},{"id":"12","weight":11.999999999999998},{"id":"13","weight":20},{"id":"21","weight":11.999999999999996},{"id":"22","weight":18},{"id":"23","weight":30}],"trace":[3.552713678800501e-16],"diagnostics":{"residuals":[{"margin":"row","category":"R1","target":40,"actual":40,"scaled_error":0},{"margin":"row","category":"R2","target":60,"actual":60,"scaled_error":0},{"margin":"column","category":"C1","target":20,"actual":19.999999999999993,"scaled_error":3.552713678800501e-16},{"margin":"column","category":"C2","target":30,"actual":30,"scaled_error":0},{"margin":"column","category":"C3","target":50,"actual":50,"scaled_error":0}],"maximum_error":3.552713678800501e-16,"bounds_violations":0,"total_weight":100,"effective_sample_size":5.06072874493927,"passes":true}}
+3 independent audit of old weights against changed population margins
+{"residuals":[{"margin":"group","category":"F","target":50,"actual":60,"scaled_error":0.2},{"margin":"group","category":"M","target":50,"actual":40,"scaled_error":0.2},{"margin":"region","category":"N","target":50,"actual":50,"scaled_error":0},{"margin":"region","category":"S","target":50,"actual":50,"scaled_error":0}],"maximum_error":0.2,"bounds_violations":0,"total_weight":100,"effective_sample_size":3.846153846153845,"passes":false}
+recalibrated: true
+moon-causal unbounded baseline passes our bound audit=false
+bounded projection passes=true
+joint mismatch is reported as iteration limit=true
+unsupported bounds rejected=true
+

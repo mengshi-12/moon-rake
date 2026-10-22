@@ -1,0 +1,5 @@
+import {
+  "mengshi-12/moon-rake" @rake,
+}
+
+pkgtype(kind: "executable")

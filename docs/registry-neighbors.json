@@ -1,0 +1,252 @@
+{
+  "matches": [
+    {
+      "name": "caassien/moonbit-synthetic-vision",
+      "version": "0.3.0",
+      "description": "Deterministic synthetic vision fixtures, annotations, and benchmarks for MoonBit.",
+      "repository": "https://github.com/caassien/moonbit-synthetic-vision",
+      "license": "Apache-2.0",
+      "keywords": [
+        "vision",
+        "synthetic-data",
+        "testing",
+        "calibration",
+        "image",
+        "benchmark"
+      ]
+    },
+    {
+      "name": "cauchyQ/moonbit-causalkit",
+      "version": "0.1.0",
+      "description": "Deterministic causal clocks and event simulation for MoonBit",
+      "repository": "https://github.com/cauchyQ/moonbit-causalkit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "distributed-systems",
+        "causality",
+        "clock",
+        "simulation"
+      ]
+    },
+    {
+      "name": "FidollarinLA/supervision_audit",
+      "version": "0.1.0",
+      "description": "Deterministic causal-LM supervision auditing with token-level evidence.",
+      "repository": "https://github.com/FidollarinLA/supervision-audit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "ai",
+        "sft",
+        "audit",
+        "training-data",
+        "moonbit"
+      ]
+    },
+    {
+      "name": "kekeshuo/moonisotonic",
+      "version": "0.1.0",
+      "description": "纯 MoonBit 加权保序回归、稳健分位数拟合与可解释单调校准模型",
+      "repository": "https://github.com/kekeshuo/moonisotonic",
+      "license": "MIT",
+      "keywords": [
+        "isotonic",
+        "regression",
+        "calibration",
+        "pava"
+      ]
+    },
+    {
+      "name": "ppyj663/moonbit-robot-vision-formats",
+      "version": "0.3.1",
+      "description": "Offline robotics vision format bridge for image timestamps, camera calibration, trajectories, depth metadata and annotation sync.",
+      "repository": "https://github.com/ppyj663/moonbit-robot-vision-formats",
+      "license": "Apache-2.0",
+      "keywords": [
+        "robotics",
+        "vision",
+        "csv",
+        "yaml",
+        "dataset",
+        "slam"
+      ]
+    },
+    {
+      "name": "qjgqjg/moon-causal",
+      "version": "0.2.5",
+      "description": "A practical MoonBit causal-inference toolkit with propensity modeling, weighting, matching, diagnostics, uncertainty, simulation, and reproducible benchmarks.",
+      "repository": "https://github.com/qjgqjg/moon-causal",
+      "license": "Apache-2.0",
+      "keywords": [
+        "causal-inference",
+        "statistics",
+        "math"
+      ]
+    },
+    {
+      "name": "riantr/moonbit_doubleML",
+      "version": "0.164.10",
+      "description": "Pure-MoonBit port of doubleml-for-py: Double / Debiased Machine Learning for partial linear, IRM, IV, DID, SSM, APO(S), PQ, QTE, LPQ, CVaR, RDD, BLP, and policy-tree models",
+      "repository": "https://gitee.com/ren-yongxiang/moonbit_doubleml.git",
+      "license": "MIT",
+      "keywords": [
+        "doubleml",
+        "DML",
+        "causal-inference",
+        "machine-learning",
+        "debiased-estimation"
+      ]
+    },
+    {
+      "name": "riantr/pyroduct",
+      "version": "0.1.32",
+      "description": "把《伽达默尔与哈贝马斯真理观比较》与《通往宁静之路》建模为可运行、可测试的 MoonBit 状态机族（主体／多主体／群体／双层次社会交往），外加 Agent 状态机（进化层：变异／闸门／只追加账本）与科研 Agent 协调器。",
+      "repository": "https://gitee.com/ren-yongxiang/pyroduct.git",
+      "license": "MIT",
+      "keywords": [
+        "state-machine",
+        "hermeneutics",
+        "multi-agent",
+        "causal-inference",
+        "research-coordinator",
+        "语料建模",
+        "科研协调",
+        "驱动槽",
+        "执行契约"
+      ]
+    },
+    {
+      "name": "riantr/snn_mbt",
+      "version": "0.155.0",
+      "description": "Bit-exact MoonBit port of SpikingNeuralNetworks.jl, extended with modern training machinery. NEURONS AND PLASTICITY: IF, AdEx, Izhikevich (IZ), HH, MorrisLecar, Poisson (including InhomogeneousPoisson), WilsonCowan; Markram STP, Gerstner / MexicanHat / AntiSymmetric / vSTDP / Confavreux2025 STDP; AMPA / NMDA / GABAa / GABAb receptors; multicompartment dendritic neurons (BallAndStick, Tripod, Multipod); IF with population synaptic conductance; spike-time and current stimuli. CORE DL: Tensor struct with broadcasting + softmax / log-softmax / cross-entropy, Conv2d / MaxPool2d / GlobalAvgPool2d / ReLU / Flatten / Linear forward AND backward, ResNet foundations, generic Chain / Sequential, pre-made MLP / SimpleCNN / LeLen5 bottles, image adapter (BMP/QOI/TGA/PNG/GIF/JPEG/ICO/TIFF) via riantr/moonbit_image, 5D [T,B,C,H,W] STImage. OPTIMIZERS AND SCHEDULING: SGD, SGD-with-momentum, Adam with bias correction, AdamW, RMSprop, AdaGrad, Adafactor; StepLR, ExponentialLR, CosineAnnealingLR, ReduceLROnPlateau; BatchNorm2d with running stats and LayerNorm per-sample, both with backward. SURROGATE GRADIENTS AND ATTENTION: fast-sigmoid (Zenke & Ganguli 2018) for BPTT through IF/LIF Heaviside; GELU, exact sparse GELU via libm erff; multi-head self-attention with mask utilities; sinusoidal and learnable positional encoding; Pre-Norm transformer block; inverted dropout; SAttention unifying three spiking attention variants; LayerScale; T5-style relative position bias; SpikingAttention with full BPTT backward; SpikeFormer demo. RL: SequenceReplayBuffer for recurrent RL, DDPG, TD3, SAC, GRU/LSTM/GTrXL recurrent actors and critics, Decision Transformer, Trajectory Transformer with beam search. META-LEARNING AND CAUSAL: MAML, FOMAML, Reptile, TaskSampler; LinearGaussianSCM, DoCalculus, CounterfactualReasoning, CausalEffectEstimator. GENERATIVE: RealNVP / Glow / NormalizingFlow, VAE, IWAE, ELBO, DDPM diffusion, EnergyBasedModel with Langevin sampling, DCGAN, WGAN-GP. OTHER: Vision Transformer with trainer, EmbeddingNet / SiameseNet / SiameseTrainer, CapsuleNetwork. GRAPH NEURAL NETWORKS: Graph with COO edge list and GCN adjacency normalisation; GCN, MPNN, GIN, PNA, GAT (multi-head), Set2Set readout, EdgeGNN, H2GCN, GraphClassifier -- and FULL BACKWARD PASSES for all of them, dispatched behind a single TrainableGraphNet enum, with node-level and graph-level training steps. VERIFICATION: two runnable harnesses, since `moon test` cannot link this package on Windows (998 .mbt files exceed the 32K command-line limit). `verify/verify_gnn_grads.ps1` runs a finite-difference gradient gate over 8 dL/dh configurations, 8 dL/dW configurations, the multi-head GAT stack, a deterministic ELU-mask row, and a cross-entropy loss-vs-gradient consistency section -- judged by relative tolerance, by a kink-versus-bug component count, and against negative controls. `verify/run_gnn_train_demo.ps1` runs an end-to-end transductive two-community training demo over all five backbones with a held-out split, a shuffled-label control and a no-message-passing baseline. These harnesses found 13 real defects that the type checker and code review had both passed, including a cross-entropy loss whose sign was inverted for six releases. Float32 end to end with libm FFI (expf, tanhf, logf, sqrtf, cosf, sinf, erff).",
+      "repository": "https://gitee.com/ren-yongxiang/moonbit-snn",
+      "license": "MIT",
+      "keywords": [
+        "spiking-neural-network",
+        "neuroscience",
+        "bit-exact",
+        "izhikevich",
+        "if-neuron",
+        "adex",
+        "hodgkin-huxley",
+        "morris-lecar",
+        "stdp",
+        "stp",
+        "poisson",
+        "dendritic",
+        "snns",
+        "julia-port",
+        "simulation",
+        "conv2d",
+        "cnn",
+        "maxpool",
+        "image",
+        "tensor",
+        "video",
+        "sgd",
+        "adam",
+        "adamw",
+        "rmsprop",
+        "adagrad",
+        "optimizer",
+        "batch-norm",
+        "layer-norm",
+        "normalization",
+        "lr-scheduler",
+        "cosine-annealing",
+        "reduce-on-plateau",
+        "chain",
+        "sequential",
+        "mlp",
+        "cnn",
+        "lenet",
+        "add",
+        "avgpool",
+        "global-avgpool",
+        "residual",
+        "resnet",
+        "surrogate-gradient",
+        "fast-sigmoid",
+        "bp-friendly-spike",
+        "gelu",
+        "transformer-activation",
+        "multi-head-attention",
+        "self-attention",
+        "transformer-block",
+        "positional-encoding",
+        "sinusoidal",
+        "transformer-block",
+        "pre-norm",
+        "causal-mask",
+        "attention-mask",
+        "dropout",
+        "inverted-dropout",
+        "spiking-attention",
+        "spikeformer",
+        "spiking-transformer",
+        "snnt-transformer",
+        "sparse-gelu",
+        "exact-gelu",
+        "adafactor",
+        "layer-scale",
+        "t5-relative-position",
+        "sattention",
+        "spiking-cross-attention",
+        "spiking-self-attention",
+        "srnn",
+        "csnn",
+        "bptt",
+        "spikeformer-demo",
+        "eval-accuracy",
+        "argmax",
+        "prediction",
+        "classification-accuracy"
+      ]
+    },
+    {
+      "name": "SCL-NN/moontracekit",
+      "version": "0.2.0",
+      "description": "Logical clocks, vector clocks, happens-before analysis, and causal buffers for MoonBit.",
+      "repository": "https://github.com/SCL-NN/MoonTraceKit",
+      "license": "Apache-2.0",
+      "keywords": [
+        "causality",
+        "vector-clock",
+        "lamport-clock",
+        "distributed",
+        "happens-before"
+      ]
+    },
+    {
+      "name": "starAndHonor/flashmoon",
+      "version": "0.1.1",
+      "description": "Pure-MoonBit WebGPU runtime and inference kernel library: WGSL kernels, 4D batched FlashAttention (MHA/GQA/MQA, causal, cross-attention), same API across wasm/native/js and WebGPU, with verified numerics.",
+      "repository": "https://github.com/starAndHonor/flashmoon",
+      "license": "Apache-2.0",
+      "keywords": [
+        "webgpu",
+        "attention",
+        "flashattention",
+        "gpu",
+        "inference"
+      ]
+    },
+    {
+      "name": "zklmbq02140831/moonbit-cbtc-atp",
+      "version": "0.1.1",
+      "description": "CBTC/CTCS train-borne ATP overspeed protection and dynamic braking curve calculation engine in MoonBit",
+      "repository": "https://github.com/zklmbq02140831/moonbit-cbtc-atp",
+      "license": "Apache-2.0",
+      "keywords": [
+        "cbtc",
+        "atp",
+        "railway",
+        "overspeed-protection",
+        "braking-curve"
+      ]
+    }
+  ],
+  "pattern": "raking|survey|post.stratif|calibrat|causal",
+  "module_count": 3156,
+  "registry": "https://mooncakes.io/api/v0/modules",
+  "date": "2026-10-20 Asia/Shanghai"
+}
