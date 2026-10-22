@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 — 2026-10-22
+
+文档修订版：0.1.0 的 README 与 CHANGELOG 仍写着“未发布”，与已上线的状态矛盾；本版只修正文档并补上 Mooncakes 安装方式，代码与 0.1.0 相同。
+
 ## 0.1.0 — 2026-10-22
 
 首个版本，已发布到 Mooncakes（`mengshi-12/moon-rake@0.1.0`，`build_status: success`）。
