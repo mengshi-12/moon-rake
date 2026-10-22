@@ -12,9 +12,11 @@
 
 示例另外展示：上游无界基线给出 7.5/2.5 并违反上界，有界投影给出 4/6 且通过；联合不相容的边际在 5 轮预算后返回 `IterationLimit`，而不是伪装成收敛。
 
+第三种工作流另有独立示例 `examples/audit`：一张从表格粘来的 2×3 权重，`evaluate` 判为 region/south 与 band/high 两条边际不达标（最大误差 0.075），重新 `fit` 后 1 轮收敛，六行权重为 15、15、20、15、15、20。
+
 ## 运行
 
-编译工具链 `moonc >= 0.10.14`。本地验证用 `moon 0.1.20260920` / `moonc v0.10.14+7d59c7e`（wasm、wasm-gc、js 三目标），CI 用安装脚本取到的当时最新稳定版 `moonc v0.10.17`（四目标全部通过，含 native）。首次解析已声明的 Apache-2.0 依赖需要联网，缓存后计算过程不联网。JS 目标需要 Node.js；Native 目标需要可用的 C 工具链。
+编译工具链 `moonc >= 0.10.14`。本地验证用 `moon 0.1.20260920` / `moonc v0.10.14+7d59c7e`（wasm、wasm-gc、js 三目标），CI 用安装脚本取到的当时最新稳定版 `moonc v0.10.17`（四目标全部通过，含 native）。首次解析已声明的 Apache-2.0 依赖需要联网，缓存后计算过程不联网。JS 目标需要 Node.js；Native 目标需要可用的 C 工具链——Windows 上需要 UCRT/MSVC（`rand_s` 在 MSVCRT 下不存在，只带 LLVM-MinGW/MSVCRT 的机器会在工具链自带的 `env.c` 处报未声明）。
 
 本模块尚未发布到 Mooncakes，因此 `moon add mengshi-12/moon-rake` 暂不可用；从源码工作：
 
@@ -24,11 +26,12 @@ moon check --deny-warn --target all
 moon build --target all
 moon test --deny-warn --target all
 moon run examples/demo --target wasm --deny-warn
+moon run examples/audit --target wasm --deny-warn
 moon fmt --check
 moon info
 ```
 
-`moon run examples/demo` 是唯一示例入口，可换 `--target wasm-gc` 或 `js`；三个目标的 stdout 逐字一致，真实输出保存在 [docs/demo-output.txt](docs/demo-output.txt)。若 `moon` 不在 PATH，把工具链的 `bin` 目录加入当前进程 PATH 并设置 `MOON_HOME` 指向工具链根目录。
+两个示例都在 `examples/` 下，可换 `--target wasm-gc` 或 `js`；每个示例在三个目标上的 stdout 逐字一致，真实输出保存在 [docs/demo-output.txt](docs/demo-output.txt) 与 [docs/audit-output.txt](docs/audit-output.txt)。`demo` 走完三种工作流；`audit` 只做审查——把一张粘贴来的权重表当作外部输入，先 `evaluate` 判否，再 `fit` 重算。若 `moon` 不在 PATH，把工具链的 `bin` 目录加入当前进程 PATH 并设置 `MOON_HOME` 指向工具链根目录。
 
 `moon fmt --check` 在 0.10.14 上通过。0.10.17 的格式化器把同一类型的规范拼写改为 `Int32`、可选参数改为 `options~`，直接跑 `moon fmt` 会改写源码但仍可编译；本仓库保留 0.10.14 也接受的 `Int`／`options?` 拼写，因此 CI 不把格式化差异当门禁，只把 check、build、test、接口漂移和示例作为门禁。
 
@@ -76,9 +79,9 @@ assert_true(audit.passes)
 
 ## 测试与交付状态
 
-19 项具名测试覆盖手算双边际解、非均匀 2×2 表的独立 odds-ratio 解、176 组二元边界解析解、真实上游互操作、联合不相容约束耗尽预算、结构零、外部权重顺序、输入不可变性、NaN/Infinity、极小权重尺度、尺寸上限与全部显式错误分支。
+22 项具名测试覆盖手算双边际解、非均匀 2×2 表的独立 odds-ratio 解、176 组二元边界解析解、真实上游互操作、联合不相容约束耗尽预算、结构零、外部权重顺序、输入不可变性、NaN/Infinity、极小权重尺度、尺寸上限、容差边界、重复校准零迭代与全部显式错误分支。
 
-CI 配置覆盖四目标的 check、build、test、生成接口无漂移（比较前把 0.10.17 的 `Int32` 归一为 `Int`）和四个目标的示例运行（`.github/workflows/ci.yml`）。配置存在不等于线上运行通过；最新一次 GitHub Actions 结果以仓库 Actions 页面为准。
+CI 配置覆盖四目标的 check、build、test、生成接口无漂移（比较前把 0.10.17 的 `Int32` 归一为 `Int`）和四个目标上的两个示例（`.github/workflows/ci.yml`）。配置存在不等于线上运行通过；最新一次 GitHub Actions 结果以仓库 Actions 页面为准。
 
 尚未发布到 Mooncakes，也未报名任何赛事。`申报书.md` 与 `LOCAL_VALIDATION.md` 属于本地材料，被 `.gitignore` 排除，不在仓库内容中。
 
