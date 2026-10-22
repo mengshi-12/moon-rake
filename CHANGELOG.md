@@ -2,7 +2,7 @@
 
 ## 0.1.0 — 2026-10-22
 
-首个版本，未发布到 Mooncakes。
+首个版本，已发布到 Mooncakes（`mengshi-12/moon-rake@0.1.0`，`build_status: success`）。
 
 **能力**
 

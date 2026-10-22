@@ -18,7 +18,15 @@
 
 编译工具链 `moonc >= 0.10.14`。本地验证用 `moon 0.1.20260920` / `moonc v0.10.14+7d59c7e`（wasm、wasm-gc、js 三目标），CI 用安装脚本取到的当时最新稳定版 `moonc v0.10.17`（四目标全部通过，含 native）。首次解析已声明的 Apache-2.0 依赖需要联网，缓存后计算过程不联网。JS 目标需要 Node.js；Native 目标需要可用的 C 工具链——Windows 上需要 UCRT/MSVC（`rand_s` 在 MSVCRT 下不存在，只带 LLVM-MinGW/MSVCRT 的机器会在工具链自带的 `env.c` 处报未声明）。
 
-本模块尚未发布到 Mooncakes，因此 `moon add mengshi-12/moon-rake` 暂不可用；从源码工作：
+已发布到 Mooncakes：`moon add mengshi-12/moon-rake`（0.1.0，MIT）。作为依赖使用时在 `moon.pkg` 里声明：
+
+```moonbit
+import {
+  "mengshi-12/moon-rake" @rake,
+}
+```
+
+从源码工作的完整命令：
 
 ```powershell
 moon update
@@ -83,6 +91,6 @@ assert_true(audit.passes)
 
 CI 配置覆盖四目标的 check、build、test、生成接口无漂移（比较前把 0.10.17 的 `Int32` 归一为 `Int`）和四个目标上的两个示例（`.github/workflows/ci.yml`）。配置存在不等于线上运行通过；最新一次 GitHub Actions 结果以仓库 Actions 页面为准。
 
-尚未发布到 Mooncakes，也未报名任何赛事。`申报书.md` 与 `LOCAL_VALIDATION.md` 属于本地材料，被 `.gitignore` 排除，不在仓库内容中。
+已发布到 Mooncakes：`mengshi-12/moon-rake` 0.1.0，`build_status` 为 `success`；`moon add` 后在独立工程里编译并运行通过。未报名任何赛事。`申报书.md` 与 `LOCAL_VALIDATION.md` 属于本地材料，被 `.gitignore` 排除，不在仓库内容中。
 
 MIT（本项目）；Apache-2.0（上游依赖，许可全文见 `licenses/`）。
