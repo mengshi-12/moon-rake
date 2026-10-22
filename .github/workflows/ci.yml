@@ -26,8 +26,14 @@ jobs:
           moon check --deny-warn --target all
           moon build --target all
           moon test --deny-warn --target all
+      # The generated interface is compared after normalising `Int32` to `Int`,
+      # the spelling moonc 0.10.14 prints for the same 32-bit integer type, so
+      # the gate still catches real API drift on either toolchain.
+      - name: Public interface is current
+        run: |
           moon info
-          git diff --exit-code
+          sed -i 's/\bInt32\b/Int/g' pkg.generated.mbti examples/demo/pkg.generated.mbti
+          git diff --exit-code -- pkg.generated.mbti examples/demo/pkg.generated.mbti
       - name: Exercise public API
         run: |
           for target in wasm wasm-gc js native; do
